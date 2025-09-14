@@ -8,6 +8,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import applicationData from '../package.json';
 import 'dotenv/config';
 import * as process from 'process';
+import { DataSource } from 'typeorm';
+import { getDataSourceToken } from '@nestjs/typeorm';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -21,6 +23,7 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 204,
   });
+
   app.useGlobalPipes(
     new ValidationPipe({
       transformOptions: {
@@ -45,9 +48,12 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const port = configService.get<number>('port') || 3000;
-  console.log(port);
 
   await app.listen(port);
-  console.log(`Application is running on: ${port}`);
+  console.info(
+    `${applicationData.name} server STARTED on port: ${port}\n`,
+    `\nDB Default DataSource initialized:`,
+    app.get(DataSource).isInitialized,
+  );
 }
 bootstrap();
