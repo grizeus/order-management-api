@@ -1,12 +1,13 @@
 import { DataSourceOptions } from 'typeorm';
 import 'dotenv/config';
-import { User } from './entities/users.entity';
+import { ProductEntity, UserEntity } from './entities';
+
 
 const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   url: process.env.DATABASE_URL,
 
-  entities: [User],
+  entities: [UserEntity, ProductEntity],
   migrations: ['./migrations/*{.ts,.js}'],
 };
 
