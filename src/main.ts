@@ -9,9 +9,8 @@ import applicationData from '../package.json';
 import 'dotenv/config';
 import * as process from 'process';
 import { DataSource } from 'typeorm';
-import { getDataSourceToken } from '@nestjs/typeorm';
 
-async function bootstrap() {
+(async () => {
   const app = await NestFactory.create(AppModule);
 
   const { httpAdapter } = app.get(HttpAdapterHost);
@@ -35,7 +34,7 @@ async function bootstrap() {
   );
 
   // Enable Swagger
-  if (process.env.NODE_ENV !== 'prod') {
+  if (process.env.NODE_ENV !== 'production') {
     const options = new DocumentBuilder()
       .setTitle(applicationData.name)
       .setDescription(applicationData.description)
@@ -55,5 +54,4 @@ async function bootstrap() {
     `\nDB Default DataSource initialized:`,
     app.get(DataSource).isInitialized,
   );
-}
-bootstrap();
+})();
