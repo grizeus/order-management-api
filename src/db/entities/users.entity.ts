@@ -1,7 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+} from 'typeorm';
+import { Order } from './index';
 
 @Entity()
-export declare class UserEntity {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -13,4 +19,7 @@ export declare class UserEntity {
 
   @Column({ default: 100, type: 'decimal', precision: 10, scale: 2 })
   balance: number;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
 }

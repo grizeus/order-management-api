@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { configuration } from './configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { ProductEntity, UserEntity } from './db/entities';
+import { Product, User, Order } from './db/entities';
 
 
 @Module({
@@ -23,7 +23,7 @@ import { ProductEntity, UserEntity } from './db/entities';
             queueLimit: 0,
             connectTimeout: 10000,
           },
-          entities: [UserEntity, ProductEntity],
+          entities: [User, Product, Order],
         };
       },
     }),
