@@ -8,9 +8,11 @@ import {
   BeforeUpdate,
 } from 'typeorm';
 import { User, Product } from './index';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Order {
+  @ApiProperty({example: '123e4567-e89b-12d3-a456-426614174000'})
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -20,9 +22,11 @@ export class Order {
   @ManyToOne(() => Product, (product) => product.orders)
   product: Product; 
 
+  @ApiProperty({example: 7})
   @Column('integer')
   quantity: number;
 
+  @ApiProperty({example: '70.00'})
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   totalPrice: number;
 
