@@ -6,6 +6,7 @@ import { configuration } from './configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { Product, User, Order } from './db/entities';
+import { OrderModule } from './order/order.module';
 
 
 @Module({
@@ -40,6 +41,7 @@ import { Product, User, Order } from './db/entities';
       ],
     }),
     ConfigModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
