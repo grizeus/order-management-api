@@ -15,8 +15,12 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return service info', () => {
+      expect(appController.getServiceInfo()).toStrictEqual({
+        name: 'order-management-api',
+        version: '0.0.1',
+        description: 'Order Management API',
+      });
     });
   });
 });

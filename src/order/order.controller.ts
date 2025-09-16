@@ -9,10 +9,8 @@ import {
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { Order } from '../db/entities/orders.entity';
-import { ResponseCreateOrderDto } from './dto/response-create-order.dto';
-import { ResponseGetOrderDto } from './dto/response-get-order.dto';
+import { CreateOrderDto, ResponseCreateOrderDto, ResponseGetOrderDto } from './dto';
+import { Order } from '../db/entities';
 
 @Controller('api/orders')
 @ApiTags('orders')

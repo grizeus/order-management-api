@@ -8,10 +8,8 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { Order } from '../db/entities/orders.entity';
-import { User } from '../db/entities/users.entity';
-import { Product } from '../db/entities/products.entity';
-import { CreateOrderDto } from './dto/create-order.dto';
+import { Order, User, Product } from '../db/entities';
+import { CreateOrderDto } from './dto';
 import { Logger } from '@nestjs/common';
 
 @Injectable()
@@ -22,8 +20,6 @@ export class OrderService {
     private orderRepository: Repository<Order>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
-    @InjectRepository(Product)
-    private productRepository: Repository<Product>,
     private dataSource: DataSource,
   ) {}
 
@@ -124,7 +120,6 @@ export class OrderService {
   }
 
   async getOrdersByUser(userId: string): Promise<Order[]> {
-    // 404 - Not Found
     const user = await this.userRepository.findOne({
       where: { id: userId },
     });
@@ -134,7 +129,6 @@ export class OrderService {
       throw new NotFoundException('User not found');
     }
 
-    // 200 - OK (implicit)
     return this.orderRepository.find({
       where: { user: { id: userId } },
       relations: ['product'],

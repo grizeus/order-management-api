@@ -1,8 +1,8 @@
 {
   "name": "order-management-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Order Management API",
+  "author": "grizeus",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

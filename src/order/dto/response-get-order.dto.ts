@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsUUID, IsInt, Min } from 'class-validator';
-import { Product } from 'src/db/entities';
+import { Product } from '../../db/entities';
 
 export class ResponseGetOrderDto {
   @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174000' })
