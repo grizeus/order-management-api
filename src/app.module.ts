@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { Product, User, Order } from './db/entities';
 import { OrderModule } from './order/order.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -42,6 +43,7 @@ import { OrderModule } from './order/order.module';
     }),
     ConfigModule,
     OrderModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

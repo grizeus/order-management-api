@@ -12,7 +12,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateOrderDto, ResponseCreateOrderDto, ResponseGetOrderDto } from './dto';
 import { Order } from '../db/entities';
 
-@Controller('api/orders')
+@Controller('orders')
 @ApiTags('orders')
 export class OrderController {
   private readonly logger = new Logger(OrderController.name);
