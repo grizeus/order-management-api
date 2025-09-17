@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost } from '@nestjs/core';
 import { AllExceptionsFilter } from './all-exceptions.filter';
 import { ValidationPipe } from '@nestjs/common';
@@ -45,12 +44,11 @@ import { DataSource } from 'typeorm';
     SwaggerModule.setup('api', app, document);
   }
 
-  const configService = app.get(ConfigService);
-  const port = configService.get<number>('port') || 3000;
+  const PORT = process.env.PORT || 3000;
 
-  await app.listen(port);
+  await app.listen(PORT);
   console.info(
-    `${applicationData.name} server STARTED on port: ${port}\n`,
+    `${applicationData.name} server STARTED on port: ${PORT}\n`,
     `\nDB Default DataSource initialized:`,
     app.get(DataSource).isInitialized,
   );
